@@ -1,9 +1,12 @@
-import static org.junit.Assert.assertEquals;
+package VA06;
+
 import static org.junit.Assert.fail;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import Player.AudioFile;
 
 public class AudioFileTest {
 
@@ -29,7 +32,7 @@ public class AudioFileTest {
 		// Windows: uncomment the next line
 		sep = Utils.emulateWindows();
 		// Linux: uncomment the next line
-		//sep = Utils.emulateLinux();
+		//sep = VA06.Utils.emulateLinux();
 
         String osname = System.getProperty("os.name");
         if (osname.toLowerCase().indexOf("win") >= 0)
@@ -210,17 +213,17 @@ public class AudioFileTest {
                 af.parsePathname(p);
                 af.parseFilename(af.getFilename());
 
-                assertEquals("getPathname() for test case [" + i + "]: " + p
+                Assert.assertEquals("getPathname() for test case [" + i + "]: " + p
                         + " not correct", expectedPathNames[i],
                         af.getPathname());
-                assertEquals("getFilename() for test case [" + i + "]: " + p
+                Assert.assertEquals("getFilename() for test case [" + i + "]: " + p
                         + " not correct", expectedFileNames[i],
                         af.getFilename());
-                assertEquals("getAuthor() for test case [" + i + "]: " + p
+                Assert.assertEquals("getAuthor() for test case [" + i + "]: " + p
                         + " not correct", expectedAuthors[i], af.getAuthor());
-                assertEquals("getTitle() for test case [" + i + "]: " + p
+                Assert.assertEquals("getTitle() for test case [" + i + "]: " + p
                         + " not correct", expectedTitles[i], af.getTitle());
-                assertEquals("toString() for test case [" + i + "]: " + p
+                Assert.assertEquals("toString() for test case [" + i + "]: " + p
                         + " not correct", expectedToStrings[i], af.toString());
             }
         } catch (Exception e) {
@@ -244,17 +247,17 @@ public class AudioFileTest {
                 System.out.printf("testCtor: pathname='%s'\nexpected:\n\tpathname='%s'\n\tfilename='%s'\n\tauthor='%s'\n\ttitle='%s'\n\ttoString='%s'\n",
                 		p, expectedPathNames[i], expectedFileNames[i], expectedAuthors[i], expectedTitles[i], expectedToStrings[i]);
                 AudioFile af = new AudioFile(p);
-                assertEquals("getPathname() for test case [" + i + "]: " + p
+                Assert.assertEquals("getPathname() for test case [" + i + "]: " + p
                         + " not correct", expectedPathNames[i],
                         af.getPathname());
-                assertEquals("getFilename() for test case [" + i + "]: " + p
+                Assert.assertEquals("getFilename() for test case [" + i + "]: " + p
                         + " not correct", expectedFileNames[i],
                         af.getFilename());
-                assertEquals("getAuthor() for test case [" + i + "]: " + p
+                Assert.assertEquals("getAuthor() for test case [" + i + "]: " + p
                         + " not correct", expectedAuthors[i], af.getAuthor());
-                assertEquals("getTitle() for test case [" + i + "]: " + p
+                Assert.assertEquals("getTitle() for test case [" + i + "]: " + p
                         + " not correct", expectedTitles[i], af.getTitle());
-                assertEquals("toString() for test case [" + i + "]: " + p
+                Assert.assertEquals("toString() for test case [" + i + "]: " + p
                         + " not correct", expectedToStrings[i], af.toString());
             }
         } catch (Exception e) {
@@ -279,16 +282,16 @@ public class AudioFileTest {
 
         if (isWindows()) {
             // On Windows we expect "Z:\part1\file.mp3\"
-            assertEquals("Pathname stored incorrectly",
+            Assert.assertEquals("Pathname stored incorrectly",
                     "Z:" + sep + "part1" + sep + "file.mp3" + sep,
                     af.getPathname());
         } else {
             // On other platforms we expect "/Z/part1/file.mp3/" 
-            assertEquals("Pathname stored incorrectly",
+            Assert.assertEquals("Pathname stored incorrectly",
                     sep + "Z" + sep + "part1" + sep + "file.mp3" + sep,
                     af.getPathname());
         }
-        assertEquals("Returned filename is incorrect", "", af.getFilename());
+        Assert.assertEquals("Returned filename is incorrect", "", af.getFilename());
     }
 
     /**
@@ -303,16 +306,16 @@ public class AudioFileTest {
 
         if (isWindows()) {
             // On Windows we expect "Z:\part1\file.mp3"
-            assertEquals("Pathname stored incorrectly", 
+            Assert.assertEquals("Pathname stored incorrectly",
                     "Z:" + sep + "part1" + sep + "file.mp3",
                     af.getPathname());
         } else {
             // On other platforms we expect "/Z/part1/file.mp3/" 
-            assertEquals("Pathname stored incorrectly",
+            Assert.assertEquals("Pathname stored incorrectly",
                     sep + "Z" + sep + "part1" + sep + "file.mp3",
                     af.getPathname());
         }
-        assertEquals("Returned filename is incorrect", "file.mp3", af.getFilename());
+        Assert.assertEquals("Returned filename is incorrect", "file.mp3", af.getFilename());
     }
 
     /**
@@ -327,16 +330,16 @@ public class AudioFileTest {
 
         if (isWindows()) {
             // On Windows we expect "Z:\file.mp3"
-            assertEquals("Pathname stored incorrectly", 
+            Assert.assertEquals("Pathname stored incorrectly",
                     "Z:" + sep + "file.mp3",
                     af.getPathname());
         } else {
             // On other platforms we expect "/Z/file.mp3" 
-            assertEquals("Pathname stored incorrectly",
+            Assert.assertEquals("Pathname stored incorrectly",
                     sep + "Z" + sep + "file.mp3",
                     af.getPathname());
         }
-        assertEquals("Returned filename is incorrect", "file.mp3", af.getFilename());
+        Assert.assertEquals("Returned filename is incorrect", "file.mp3", af.getFilename());
     }
  
     @Test
@@ -344,9 +347,9 @@ public class AudioFileTest {
         AudioFile af = new AudioFile();
         af.parsePathname("/part1/mymusic/ -");
         char sepchar = System.getProperty("file.separator").charAt(0);
-        assertEquals("Pathname stored incorrectly", sepchar + "part1" + sepchar +
+        Assert.assertEquals("Pathname stored incorrectly", sepchar + "part1" + sepchar +
                     "mymusic" + sepchar + " -", af.getPathname());
-        assertEquals("Returned filename is incorrect", "-", af.getFilename());
+        Assert.assertEquals("Returned filename is incorrect", "-", af.getFilename());
     }
     
     @Test
@@ -354,9 +357,9 @@ public class AudioFileTest {
         AudioFile af = new AudioFile();
         af.parsePathname("\\nocheinsong\\- ");
         char sepchar = System.getProperty("file.separator").charAt(0);
-        assertEquals("Pathname stored incorrectly", sepchar  +"nocheinsong" +
+        Assert.assertEquals("Pathname stored incorrectly", sepchar  +"nocheinsong" +
                     sepchar + "-", af.getPathname());
-        assertEquals("Returned filename is incorrect", "-", af.getFilename());
+        Assert.assertEquals("Returned filename is incorrect", "-", af.getFilename());
     }
 
 

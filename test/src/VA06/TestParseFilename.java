@@ -1,10 +1,14 @@
+package VA06;
+
 import static org.junit.Assert.assertEquals;
 
+import Player.AudioFile;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests for method AudioFile/parseFilename()
+ * Tests for method Player.AudioFile/parseFilename()
  */
 public class TestParseFilename {
 	
@@ -16,10 +20,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -32,10 +36,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -48,10 +52,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -64,10 +68,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -80,10 +84,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -96,10 +100,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -112,10 +116,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -128,10 +132,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -144,10 +148,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -160,10 +164,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}
@@ -176,10 +180,10 @@ public class TestParseFilename {
 		
 		AudioFile af = new AudioFile();
 		af.parseFilename(filename);
-		assertEquals("Author is not correct!", 
+		Assert.assertEquals("Author is not correct!",
 				expectedAuthor,
 				af.getAuthor());
-		assertEquals("Title is not correct!",
+		Assert.assertEquals("Title is not correct!",
 				expectedTitle,
 				af.getTitle());
 	}

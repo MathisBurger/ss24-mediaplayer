@@ -1,3 +1,5 @@
+package VA06;
+
 import static java.lang.reflect.Modifier.isFinal;
 import static java.lang.reflect.Modifier.isPublic;
 import static java.lang.reflect.Modifier.isStatic;
@@ -7,6 +9,7 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
 
+import Player.AudioFile;
 import org.junit.Test;
 
 @SuppressWarnings("rawtypes")

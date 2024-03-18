@@ -1,11 +1,16 @@
+package VA06;
+
 import static org.junit.Assert.assertEquals;
 
+import VA06.Utils;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import Player.AudioFile;
 
 /**
- * Tests for method AudioFile/toString()
+ * Tests for method Player.AudioFile/toString()
  */
 public class TestToString {
 	private char sep;
@@ -22,11 +27,11 @@ public class TestToString {
 		// Windows: uncomment the next line
 		sep = Utils.emulateWindows();
 		// Linux: uncomment the next line
-		//sep = Utils.emulateLinux();
+		//sep = VA06.Utils.emulateLinux();
 
         String osname = System.getProperty("os.name");
         if (!messageShown) {
-        	System.out.printf("TestParsePathname: os name is %s, using path separator '%c'\n", osname, sep);
+        	System.out.printf("VA06.TestParsePathname: os name is %s, using path separator '%c'\n", osname, sep);
         	messageShown = true;
         }
         if (Utils.isWindows()) {
@@ -48,7 +53,7 @@ public class TestToString {
 		String expectedToString = "Falco - Rock Me Amadeus";
 		
 		AudioFile af = new AudioFile(pathname);
-		assertEquals("tostring result is not correct!", 
+		Assert.assertEquals("tostring result is not correct!",
 				expectedToString,
 				af.toString());
 	}
@@ -59,7 +64,7 @@ public class TestToString {
 		String expectedToString = "file";
 		
 		AudioFile af = new AudioFile(pathname);
-		assertEquals("tostring result is not correct!", 
+		Assert.assertEquals("tostring result is not correct!",
 				expectedToString,
 				af.toString());
 	}
@@ -70,7 +75,7 @@ public class TestToString {
 		String expectedToString = "";
 		
 		AudioFile af = new AudioFile(pathname);
-		assertEquals("tostring result is not correct!", 
+		Assert.assertEquals("tostring result is not correct!",
 				expectedToString,
 				af.toString());
 	}
@@ -81,7 +86,7 @@ public class TestToString {
 		String expectedToString = "-";
 		
 		AudioFile af = new AudioFile(pathname);
-		assertEquals("tostring result is not correct!", 
+		Assert.assertEquals("tostring result is not correct!",
 				expectedToString,
 				af.toString());
 	}
@@ -92,7 +97,7 @@ public class TestToString {
 		String expectedToString = "";
 		
 		AudioFile af = new AudioFile(pathname);
-		assertEquals("tostring result is not correct!", 
+		Assert.assertEquals("tostring result is not correct!",
 				expectedToString,
 				af.toString());
 	}
