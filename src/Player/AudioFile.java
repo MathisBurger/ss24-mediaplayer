@@ -2,6 +2,9 @@ package Player;
 
 import java.util.Arrays;
 
+/**
+ * Audio file that contains information about a file
+ */
 public class AudioFile {
 
     private String pathname;
@@ -11,72 +14,112 @@ public class AudioFile {
     private String author;
     private String title;
 
-    public AudioFile()  {}
+    private final String osSep;
 
+    /**
+     * Default constructor
+     */
+    public AudioFile()  {
+        this.osSep =  isWindows() ? "\\" : "/";
+    }
+
+    /**
+     * Constructor that initializes everything
+     *
+     * @param path The path to the file
+     */
     public AudioFile(String path) {
+        this.osSep =  isWindows() ? "\\" : "/";
         this.parsePathname(path);
         this.setConstructorFilename();
     }
 
 
+    /**
+     * Parses the provided pathname and sets the filename, as well as
+     * the author and title.
+     *
+     * @param path The path to the audio file
+     */
     public void parsePathname(String path) {
-        String os = System.getProperty("os.name");
-        if (!os.contains("Windows") && path.startsWith("C:\\")) {
+        if (!isWindows()) {
             path = path.replace("C:\\", "/");
         }
-        while (path.contains("\\\\") || path.contains("//")) {
-            path = path
-                    .replace("\\\\", "\\")
-                    .replace("//", "/");
-        }
-        if (os.contains("Windows")) {
+        if (isWindows()) {
             path = path.replace("/", "\\");
         } else {
             path = path.replace("\\", "/");
         }
+        while (path.contains(this.osSep +  this.osSep)) {
+            path = path
+                    .replace(this.osSep + this.osSep, this.osSep);
+        }
         this.pathname = this.reduceSurroundingWhitespaces(path);
-        System.out.println("pn: " +  this.pathname);
         this.setConstructorFilename();
     }
 
+    /**
+     * Parses the filename and generates title and author from it
+     *
+     * @param filename The provided file name
+     */
     public void parseFilename(String filename) {
         this.filename = filename;
         String[] split = filename.split(" - ");
-        if (split.length == 0) {
-            this.author = "";
-            this.title = "";
-            return;
-        }
-        if (split.length == 1 && split[0].startsWith(".")) {
-            this.author = "";
-            this.title = "";
-            return;
-        }
         if (split.length >= 2) {
             this.author = this.reduceSurroundingWhitespaces(split[0]);
             this.saveSongTitle(split[1]);
             return;
         }
+        if (split.length == 0) {
+            this.title = "";
+        } else {
+            this.saveSongTitle(split[0]);
+        }
         this.author = "";
-        this.saveSongTitle(split[0]);
     }
 
+    /**
+     * Gets the pathname
+     *
+     * @return The path name
+     */
     public String getPathname() {
         return this.pathname;
     }
 
+    /**
+     * Gets the file name
+     *
+     * @return The file name
+     */
     public String getFilename() {
         return this.filename;
     }
 
+    /**
+     * Gets the author
+     *
+     * @return The author
+     */
     public String getAuthor() {
         return this.author;
     }
 
+    /**
+     * Gets the title
+     *
+     * @return The title
+     */
     public String getTitle() {
         return this.title;
     }
 
+    /**
+     * Converts the object to a string
+     *
+     * @return The string
+     */
     public String toString() {
         if (!this.author.isEmpty()) {
             return this.author + " - " + this.title;
@@ -85,6 +128,12 @@ public class AudioFile {
     }
 
 
+    /**
+     * Removes all whitespaces at the end and beginning of the text
+     *
+     * @param str The string
+     * @return The updated string
+     */
     private String reduceSurroundingWhitespaces(String str) {
         while (str.startsWith(" ")) {
             str = str.substring(1);
@@ -95,6 +144,11 @@ public class AudioFile {
         return str;
     }
 
+    /**
+     * Saves the title of a song after formatting it.
+     *
+     * @param title The title
+     */
     private void saveSongTitle(String title) {
         String[] split = title.split("\\.");
         if (split.length == 1) {
@@ -105,19 +159,34 @@ public class AudioFile {
         this.title = this.reduceSurroundingWhitespaces(title);
     }
 
+    /**
+     * Sets the filename from the pathname.
+     */
     private void setConstructorFilename() {
-        if (this.pathname.endsWith("/") || this.pathname.endsWith("\\")) {
+        if (this.pathname.endsWith(this.osSep)) {
             this.filename = "";
             return;
         }
-        String sep = "/";
-        if (this.pathname.contains("\\")) {
-            String[] split = this.pathname.split("\\\\");
-            this.parseFilename(split[split.length-1]);
-        } else {
-            String[] split = this.pathname.split("/");
-            this.parseFilename(split[split.length-1]);
-        }
+        String[] split = this.pathname.split(getSplitSep());
+        this.parseFilename(split[split.length-1]);
 
+    }
+
+    /**
+     * Checks if the system runs on windows
+     *
+     * @return If the OS is windows
+     */
+    private boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("win");
+    }
+
+    /**
+     * Gets the OS sep for splitting actions
+     *
+     * @return The splitting sep
+     */
+    private String getSplitSep() {
+        return isWindows() ? "\\\\" : "/";
     }
 }

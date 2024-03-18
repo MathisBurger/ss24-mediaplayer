@@ -2,7 +2,6 @@ package VA06;
 
 import static org.junit.Assert.assertEquals;
 
-import VA06.Utils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
