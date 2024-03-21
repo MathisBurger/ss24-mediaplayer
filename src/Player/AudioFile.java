@@ -43,7 +43,18 @@ public class AudioFile {
      */
     public void parsePathname(String path) {
         if (!isWindows()) {
-            path = path.replace("C:\\", "/");
+            int index = path.indexOf(':');
+            StringBuilder sb = new StringBuilder();
+            char[] ca = path.toCharArray();
+            for (int i=0; i<ca.length; i++) {
+                if (index == (i+1)) {
+                    sb.append('/');
+                }
+                if (i != index) {
+                    sb.append(ca[i]);
+                }
+            }
+            path = sb.toString();
         }
         if (isWindows()) {
             path = path.replace("/", "\\");
@@ -64,7 +75,7 @@ public class AudioFile {
      * @param filename The provided file name
      */
     public void parseFilename(String filename) {
-        this.filename = filename;
+        this.filename = this.reduceSurroundingWhitespaces(filename);
         String[] split = filename.split(" - ");
         if (split.length >= 2) {
             this.author = this.reduceSurroundingWhitespaces(split[0]);
@@ -165,6 +176,8 @@ public class AudioFile {
     private void setConstructorFilename() {
         if (this.pathname.endsWith(this.osSep)) {
             this.filename = "";
+            this.author = "";
+            this.title = "";
             return;
         }
         String[] split = this.pathname.split(getSplitSep());

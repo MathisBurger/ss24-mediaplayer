@@ -2,6 +2,7 @@ package VA06;
 
 import static org.junit.Assert.assertEquals;
 
+import cert.Utils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,9 +25,9 @@ public class TestParsePathname {
     public void setUp() {
 		// to test Windows or Linux just use the corresponding lines in comments below
 		// Windows: uncomment the next line
-		sep = Utils.emulateWindows();
+		//sep = Utils.emulateWindows();
 		// Linux: uncomment the next line
-		//sep = VA06.Utils.emulateLinux();
+		sep = cert.Utils.emulateLinux();
 
         String osname = System.getProperty("os.name");
         if (!messageShown) {

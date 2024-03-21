@@ -1,4 +1,4 @@
-package VA06;
+package cert;
 
 public class Utils {
 	private static String[] originalOsSettings = {

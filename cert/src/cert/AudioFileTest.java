@@ -1,4 +1,4 @@
-package VA06;
+package cert;
 
 import static org.junit.Assert.fail;
 
@@ -32,7 +32,7 @@ public class AudioFileTest {
 		// Windows: uncomment the next line
 		sep = Utils.emulateWindows();
 		// Linux: uncomment the next line
-		//sep = VA06.Utils.emulateLinux();
+		//sep = cert.Utils.emulateLinux();
 
         String osname = System.getProperty("os.name");
         if (osname.toLowerCase().indexOf("win") >= 0)
