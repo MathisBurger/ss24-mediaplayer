@@ -5,7 +5,8 @@ import studiplayer.basic.BasicPlayer;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Sampled file abstract class
+ * Sampled file that implements functionality to
+ * play song via basic player
  */
 public abstract class SampledFile extends AudioFile {
 
@@ -27,33 +28,58 @@ public abstract class SampledFile extends AudioFile {
         super(path);
     }
 
+    /**
+     * Plays the song
+     */
     @Override
     public void play() {
         BasicPlayer.play(this.pathname);
     }
 
+    /**
+     * Toggles pause of the song
+     */
     @Override
     public void togglePause() {
         BasicPlayer.togglePause();
     }
 
+    /**
+     * Stops the song
+     */
     @Override
     public void stop() {
         BasicPlayer.stop();
     }
 
+    /**
+     * Formats the duration.
+     *
+     * @return Duration in format mm:ss
+     */
     @Override
     public String formatDuration() {
         return SampledFile.timeFormatter(this.duration);
     }
 
+    /**
+     * Formats the position.
+     *
+     * @return Position in format mm:ss
+     */
     @Override
     public String formatPosition() {
         return SampledFile.timeFormatter(BasicPlayer.getPosition());
     }
 
+    /**
+     * Formats microsecs to format mm:ss
+     *
+     * @param timeInMicroSeconds The amount of microsecs
+     * @return Time format as mm:ss
+     */
     public static String timeFormatter(long timeInMicroSeconds) {
-        if (timeInMicroSeconds < 0) {
+        if (timeInMicroSeconds < 0 || timeInMicroSeconds >= TimeUnit.SECONDS.toMicros(100*60)) {
             throw new RuntimeException("Invalid time");
         }
         long minutes = TimeUnit.MICROSECONDS.toMinutes(timeInMicroSeconds);
@@ -65,6 +91,11 @@ public abstract class SampledFile extends AudioFile {
         );
     }
 
+    /**
+     * Gets the total duration of the song
+     *
+     * @return Total duration
+     */
     public long getDuration() {
         return this.duration;
     }

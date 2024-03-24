@@ -141,14 +141,29 @@ public abstract class AudioFile {
         return this.title;
     }
 
+    /**
+     * Abstract function to play song
+     */
     public abstract void play();
 
+    /**
+     * Abstract function to toggle pause
+     */
     public abstract void togglePause();
 
+    /**
+     * Abstract function to stop song
+     */
     public abstract void stop();
 
+    /**
+     * Abstract function to format duration
+     */
     public abstract String formatDuration();
 
+    /**
+     * Abstract function to format position
+     */
     public abstract String formatPosition();
 
 

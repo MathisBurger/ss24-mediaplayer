@@ -4,8 +4,14 @@ import studiplayer.basic.TagReader;
 
 import java.util.Map;
 
+/**
+ * Tagged file that can be used to read tags.
+ */
 public class TaggedFile extends SampledFile {
 
+    /**
+     * Album of the song
+     */
     private String album;
 
     public TaggedFile() {
@@ -18,10 +24,18 @@ public class TaggedFile extends SampledFile {
         this.readAndStoreTags();
     }
 
+    /**
+     * Gets the album of the song
+     *
+     * @return The album
+     */
     public String getAlbum() {
         return this.album;
     }
 
+    /**
+     * Reads and stores the tags to the attributes.
+     */
     public void readAndStoreTags() {
         Map<String, Object> tags = TagReader.readTags(this.pathname);
         if (tags.containsKey("title")) {
@@ -38,6 +52,11 @@ public class TaggedFile extends SampledFile {
         }
     }
 
+    /**
+     * Overwritten to string function to consider duration and album.
+     *
+     * @return Song as string
+     */
     @Override
     public String toString() {
         if (this.album != null) {
