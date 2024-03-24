@@ -29,7 +29,7 @@ public abstract class AudioFile {
      *
      * @param path The path to the file
      */
-    public AudioFile(String path) throws Exception {
+    public AudioFile(String path) {
         this.osSep =  isWindows() ? "\\" : "/";
         this.parsePathname(path);
         //this.setConstructorFilename();
@@ -43,7 +43,7 @@ public abstract class AudioFile {
      *
      * @param path The path to the audio file
      */
-    public void parsePathname(String path) throws Exception {
+    public void parsePathname(String path) {
         if (!isWindows()) {
             int index = path.indexOf(':');
             StringBuilder sb = new StringBuilder();
@@ -158,7 +158,7 @@ public abstract class AudioFile {
      * @param str The string
      * @return The updated string
      */
-    private String reduceSurroundingWhitespaces(String str) {
+    protected String reduceSurroundingWhitespaces(String str) {
         while (str.startsWith(" ")) {
             str = str.substring(1);
         }
@@ -219,10 +219,10 @@ public abstract class AudioFile {
     /**
      * Checks if the file can be read
      */
-    protected void checkCanRead() throws Exception {
+    protected void checkCanRead() {
         File file = new File(this.pathname);
         if (!file.canRead()) {
-            throw new Exception("Cannot read file");
+            throw new RuntimeException("Cannot read file");
         }
     }
 }

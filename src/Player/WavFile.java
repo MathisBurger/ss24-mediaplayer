@@ -2,6 +2,8 @@ package Player;
 
 import studiplayer.basic.WavParamReader;
 
+import java.util.concurrent.TimeUnit;
+
 public class WavFile extends SampledFile {
 
     public WavFile() {
@@ -9,7 +11,7 @@ public class WavFile extends SampledFile {
         this.readAndSetDurationFromFile();
     }
 
-    public WavFile(String path) throws Exception {
+    public WavFile(String path) {
         super(path);
         this.readAndSetDurationFromFile();
     }
@@ -27,6 +29,6 @@ public class WavFile extends SampledFile {
     }
 
     public static long computeDuration(long numberOfFrames, float frameRate) {
-        return (long) (numberOfFrames * frameRate);
+        return (long)(numberOfFrames / frameRate * 1000000L);
     }
 }

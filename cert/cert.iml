@@ -18,5 +18,28 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lib/jl1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/jogg-0.0.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/mp3spi1.9.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/studiplayer.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/jorbis-0.0.15.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/tritonus_share.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/vorbisspi1.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../lib/jl1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/jogg-0.0.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/mp3spi1.9.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/studiplayer.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/jorbis-0.0.15.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/tritonus_share.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/vorbisspi1.0.2.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

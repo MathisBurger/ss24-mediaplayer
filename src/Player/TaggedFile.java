@@ -13,7 +13,7 @@ public class TaggedFile extends SampledFile {
         this.readAndStoreTags();
     }
 
-    public TaggedFile(String path) throws Exception {
+    public TaggedFile(String path) {
         super(path);
         this.readAndStoreTags();
     }
@@ -25,13 +25,13 @@ public class TaggedFile extends SampledFile {
     public void readAndStoreTags() {
         Map<String, Object> tags = TagReader.readTags(this.pathname);
         if (tags.containsKey("title")) {
-            this.title = tags.get("title").toString();
+            this.title = this.reduceSurroundingWhitespaces(tags.get("title").toString());
         }
         if (tags.containsKey("author")) {
-            this.author = tags.get("author").toString();
+            this.author = this.reduceSurroundingWhitespaces(tags.get("author").toString());
         }
         if (tags.containsKey("album")) {
-            this.album = tags.get("album").toString();
+            this.album = this.reduceSurroundingWhitespaces(tags.get("album").toString());
         }
         if (tags.containsKey("duration")) {
             this.duration = (long)tags.get("duration");
@@ -41,7 +41,7 @@ public class TaggedFile extends SampledFile {
     @Override
     public String toString() {
         if (this.album != null) {
-            return this.album + " - " + this.formatDuration();
+            return super.toString() +  " - " + this.album + " - " + this.formatDuration();
         }
         return super.toString() +  " - " + this.formatDuration();
     }

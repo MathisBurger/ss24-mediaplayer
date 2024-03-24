@@ -23,7 +23,7 @@ public abstract class SampledFile extends AudioFile {
      *
      * @param path The path to a file
      */
-    public SampledFile(String path) throws Exception {
+    public SampledFile(String path) {
         super(path);
     }
 
@@ -59,7 +59,7 @@ public abstract class SampledFile extends AudioFile {
         long minutes = TimeUnit.MICROSECONDS.toMinutes(timeInMicroSeconds);
         long seconds = TimeUnit.MICROSECONDS.toSeconds(timeInMicroSeconds) - minutes*60;
         return String.format(
-                "%d:%d",
+                "%02d:%02d",
                 minutes,
                 seconds
         );
