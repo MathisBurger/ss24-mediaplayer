@@ -1,18 +1,19 @@
 package Player;
 
+import java.io.File;
 import java.util.Arrays;
 
 /**
  * Audio file that contains information about a file
  */
-public class AudioFile {
+public abstract class AudioFile {
 
-    private String pathname;
+    protected String pathname;
 
-    private String filename;
+    protected String filename;
 
-    private String author;
-    private String title;
+    protected String author;
+    protected String title;
 
     private final String osSep;
 
@@ -28,10 +29,11 @@ public class AudioFile {
      *
      * @param path The path to the file
      */
-    public AudioFile(String path) {
+    public AudioFile(String path) throws Exception {
         this.osSep =  isWindows() ? "\\" : "/";
         this.parsePathname(path);
-        this.setConstructorFilename();
+        //this.setConstructorFilename();
+
     }
 
 
@@ -41,7 +43,7 @@ public class AudioFile {
      *
      * @param path The path to the audio file
      */
-    public void parsePathname(String path) {
+    public void parsePathname(String path) throws Exception {
         if (!isWindows()) {
             int index = path.indexOf(':');
             StringBuilder sb = new StringBuilder();
@@ -66,6 +68,7 @@ public class AudioFile {
                     .replace(this.osSep + this.osSep, this.osSep);
         }
         this.pathname = this.reduceSurroundingWhitespaces(path);
+        this.checkCanRead();
         this.setConstructorFilename();
     }
 
@@ -138,6 +141,16 @@ public class AudioFile {
         return this.title;
     }
 
+    public abstract void play();
+
+    public abstract void togglePause();
+
+    public abstract void stop();
+
+    public abstract String formatDuration();
+
+    public abstract String formatPosition();
+
 
     /**
      * Removes all whitespaces at the end and beginning of the text
@@ -201,5 +214,15 @@ public class AudioFile {
      */
     private String getSplitSep() {
         return isWindows() ? "\\\\" : "/";
+    }
+
+    /**
+     * Checks if the file can be read
+     */
+    protected void checkCanRead() throws Exception {
+        File file = new File(this.pathname);
+        if (!file.canRead()) {
+            throw new Exception("Cannot read file");
+        }
     }
 }
