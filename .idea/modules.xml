@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SS24-Mediaplayer.iml" filepath="$PROJECT_DIR$/SS24-Mediaplayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/cert/cert.iml" filepath="$PROJECT_DIR$/cert/cert.iml" />
-      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
     </modules>
   </component>
 </project>

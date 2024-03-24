@@ -1,8 +1,8 @@
-package VA06;
+package src.VA06;
 
 import static org.junit.Assert.assertEquals;
 
-import cert.Utils;
+import VA06.Utils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,7 +27,7 @@ public class TestParsePathname {
 		// Windows: uncomment the next line
 		//sep = Utils.emulateWindows();
 		// Linux: uncomment the next line
-		sep = cert.Utils.emulateLinux();
+		sep = Utils.emulateLinux();
 
         String osname = System.getProperty("os.name");
         if (!messageShown) {

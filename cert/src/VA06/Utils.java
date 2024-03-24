@@ -1,5 +1,4 @@
-package cert;
-
+package VA06;
 public class Utils {
 	private static String[] originalOsSettings = {
 			System.getProperty("file.separator"),

@@ -1,4 +1,4 @@
-package VA06;
+package src.VA06;
 
 import static org.junit.Assert.assertEquals;
 
