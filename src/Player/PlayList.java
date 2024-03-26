@@ -115,7 +115,7 @@ public class PlayList {
             this.playList = new LinkedList<AudioFile>();
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (!line.startsWith("#")) {
+                if (!line.startsWith("#") && !line.isBlank()) {
                     this.playList.add(AudioFileFactory.createAudioFile(line));
                 }
             }
@@ -125,7 +125,8 @@ public class PlayList {
             try {
                 assert scanner != null;
                 scanner.close();
-            } catch (Exception ignored) {}
+                this.current = 0;
+            } catch (Exception|AssertionError ignored) {}
         }
     }
 
@@ -148,7 +149,7 @@ public class PlayList {
             try {
                 assert writer != null;
                 writer.close();
-            } catch (Exception ignored) {}
+            } catch (Exception|AssertionError ignored) {}
         }
     }
 

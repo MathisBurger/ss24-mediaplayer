@@ -29,10 +29,10 @@ public class PlayListTest {
     public void testGetCurrent() {
         PlayList pl = new PlayList();
         try {
-            pl.getList().add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl.getList().add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl.getList().add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
-            pl.getList().add(new TaggedFile("audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl.getList().add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl.getList().add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
         } catch (Exception e) {
             fail("Unable to create AudioFile:" + e.getMessage());
         }
@@ -59,16 +59,16 @@ public class PlayListTest {
             fail("getCurrentAudioFile() yields exception for empty PlayList");
         }
         try {
-            pl.getList().add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl.getList().add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl.getList().add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
-            pl.getList().add(new TaggedFile("audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl.getList().add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl.getList().add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
         } catch (Exception e) {
             fail("Unable to create AudioFile:" + e.getMessage());
         }
 
         // The next test depends on the fact that we added 4 files to the PlayList
-        // Since we added 4 AudioFiles we expect a length of 4
+        // Since we added 4 ../audiofiles we expect a length of 4
         assertEquals("Wrong size of PlayList", 4, pl.getList().size());
         
         // From here on we do no longer depend on the exact number of files
@@ -90,7 +90,7 @@ public class PlayListTest {
      * Checks if no shuffling is being done in normal, i.e. sequential 
      * mode (randomOrder == false).
      * 
-     * - create two playlists with identical Audiofiles
+     * - create two playlists with identical ../audiofiles
      * - run over first list multiple times using changeCurrent() 
      *   and compare with second list, entries should be identical
      * 
@@ -103,10 +103,10 @@ public class PlayListTest {
             fail("getCurrentAudioFile() yields exception for empty PlayList");
         }
         try {
-            pl.getList().add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl.getList().add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl.getList().add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
-            pl.getList().add(new TaggedFile("audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl.getList().add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl.getList().add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
         } catch (Exception e) {
             fail("Unable to create AudioFile:" + e.getMessage());
         }
@@ -138,10 +138,10 @@ public class PlayListTest {
         // Thus, getCurrentAudioFile() should yield null
         assertNull(pl.currentAudioFile());
         try {
-            pl.getList().add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl.getList().add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl.getList().add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
-            pl.getList().add(new TaggedFile("audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl.getList().add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl.getList().add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
+            pl.getList().add(new TaggedFile("../audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
         } catch (Exception e) {
             fail("Unable to create AudioFile:" + e.getMessage());
         }
@@ -161,10 +161,10 @@ public class PlayListTest {
         // Create a play list
         PlayList pl1 = new PlayList();
         try {
-            pl1.getList().add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.getList().add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.getList().add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
-            pl1.getList().add(new TaggedFile("audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
+            pl1.getList().add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.getList().add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.getList().add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
+            pl1.getList().add(new TaggedFile("../audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
         } catch (Exception e) {
             fail("Unable to create AudioFile:" + e.getMessage());
         }
@@ -220,10 +220,10 @@ public class PlayListTest {
         // Create a play list
         PlayList pl1 = new PlayList();
         try {
-            pl1.getList().add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.getList().add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.getList().add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
-            pl1.getList().add(new TaggedFile("audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
+            pl1.getList().add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.getList().add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.getList().add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
+            pl1.getList().add(new TaggedFile("../audiofiles/Haydn - Symphonie # 96 Motiv.ogg"));
         } catch (Exception e) {
             fail("Unable to create AudioFile:" + e.getMessage());
         }

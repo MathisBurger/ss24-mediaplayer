@@ -12,6 +12,7 @@ public class AudioFileFactory {
      * @return An AudioFile instance.
      */
     public static AudioFile createAudioFile(String path) {
+        System.out.println("File: " + path);
         String[] split = path.split("\\.");
         String extension = split[split.length-1];
         if (extension.equalsIgnoreCase("wav")) {
