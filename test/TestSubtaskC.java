@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import Player.AudioFile;
+import Player.PlayList;
+import Player.TaggedFile;
 import org.junit.Test;
 
 public class TestSubtaskC {

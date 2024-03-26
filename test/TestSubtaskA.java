@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import Player.PlayList;
+import Player.AudioFile;
+import Player.TaggedFile;
 import org.junit.Test;
 
 public class TestSubtaskA {

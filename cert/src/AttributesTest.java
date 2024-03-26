@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 import java.lang.reflect.Field;
 
 import org.junit.Test;
+import Player.*;
 
 @SuppressWarnings("rawtypes")
 public class AttributesTest {

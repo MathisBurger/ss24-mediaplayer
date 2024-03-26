@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.junit.Test;
+import Player.*;
 
 public class PlayListTest {
     // Note: we do not check the behavior of setCurrent()/getCurrent() with respect

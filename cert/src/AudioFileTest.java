@@ -8,6 +8,7 @@ import java.util.Hashtable;
 
 import org.junit.Before;
 import org.junit.Test;
+import Player.*;
 
 public class AudioFileTest {
 
