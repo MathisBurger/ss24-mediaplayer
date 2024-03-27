@@ -1,7 +1,6 @@
 package studiplayer.audio;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class ControllablePlayListIterator implements Iterator<AudioFile> {
 
@@ -14,7 +13,7 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
     }
 
     public ControllablePlayListIterator(List<AudioFile> list, String search, SortCriterion sort) {
-        this.fileList = list;
+        this.fileList = ControllablePlayListIterator.applySearchAndSort(list, search, sort);
         this.position = -1;
     }
 
@@ -25,7 +24,11 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
 
     @Override
     public AudioFile next() {
-        return this.fileList.get(++this.position);
+        try {
+            return this.fileList.get(++this.position);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     public Object jumpToAudioFile(AudioFile file) {
@@ -34,5 +37,32 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
             return file;
         }
         return null;
+    }
+
+    private static List<AudioFile> applySearchAndSort(List<AudioFile> list, String search, SortCriterion sort) {
+        List<AudioFile> filtered = new ArrayList<>();
+        for (AudioFile element : list) {
+            if (
+                    search == null
+                    || search.isEmpty()
+                    || element.getAuthor().contains(search)
+                    || element.getTitle().contains(search)
+                    || element.album.contains(search)
+            ) {
+                filtered.add(element);
+            }
+        }
+        if (sort == null ||sort == SortCriterion.DEFAULT) {
+            return filtered;
+        }
+        Comparator<AudioFile> comp = new AuthorComparator();
+        switch (sort) {
+            case AUTHOR -> comp = new AuthorComparator();
+            case TITLE -> comp = new TitleComparator();
+            case ALBUM -> comp = new AuthorComparator();
+            case DURATION -> comp = new DurationComparator();
+        }
+        filtered.sort(comp);
+        return filtered;
     }
 }

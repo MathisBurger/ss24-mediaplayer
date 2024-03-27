@@ -30,6 +30,8 @@ public abstract class AudioFile {
     public AudioFile()  {
         this.osSep =  isWindows() ? "\\" : "/";
         this.author = "";
+        this.album = "";
+        this.title = "";
         this.duration = -1;
     }
 
@@ -42,6 +44,8 @@ public abstract class AudioFile {
         this.osSep =  isWindows() ? "\\" : "/";
         this.duration = -1;
         this.author = "";
+        this.album = "";
+        this.title = "";
         this.parsePathname(path);
         //this.setConstructorFilename();
 

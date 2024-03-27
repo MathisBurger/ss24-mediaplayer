@@ -21,6 +21,10 @@ public class PlayList implements Iterable<AudioFile> {
     private SortCriterion sortCriterion;
     private int current;
 
+    private AudioFile currentAudioFile;
+
+    private ControllablePlayListIterator iterator;
+
     /**
      * Default constructor
      */
@@ -48,6 +52,12 @@ public class PlayList implements Iterable<AudioFile> {
      */
     public void add(AudioFile file) {
         this.playList.add(file);
+        this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
+        if (this.currentAudioFile == null) {
+            this.currentAudioFile = this.iterator.next();
+        } else {
+            this.iterator.jumpToAudioFile(this.currentAudioFile);
+        }
     }
 
     /**
@@ -57,6 +67,8 @@ public class PlayList implements Iterable<AudioFile> {
      */
     public void remove(AudioFile file) {
         this.playList.remove(file);
+        this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
+        this.currentAudioFile = this.iterator.next();
     }
 
     /**
@@ -92,21 +104,26 @@ public class PlayList implements Iterable<AudioFile> {
      * @return The audio file
      */
     public AudioFile currentAudioFile() {
-        if (this.current >= this.playList.size()) {
+        if (this.playList.isEmpty()) {
             return null;
         }
-        return this.playList.get(this.current);
+        if (this.iterator == null) {
+            this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
+            this.currentAudioFile = this.iterator.next();
+        }
+        return this.currentAudioFile;
     }
 
     /**
      * Plays the next song
      */
     public void nextSong() {
-        try {
-            this.playList.get(this.current + 1);
-            this.current++;
-        } catch (IndexOutOfBoundsException e) {
-            this.current = 0;
+        if (this.playList.isEmpty()) return;
+        if (this.iterator.hasNext()) {
+            this.currentAudioFile = this.iterator.next();
+        } else {
+            this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
+            this.currentAudioFile = this.iterator.next();
         }
     }
 
@@ -138,6 +155,8 @@ public class PlayList implements Iterable<AudioFile> {
                 assert scanner != null;
                 scanner.close();
                 this.current = 0;
+                this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
+                this.currentAudioFile = this.iterator.next();
             } catch (Exception|AssertionError ignored) {}
         }
     }
@@ -180,6 +199,8 @@ public class PlayList implements Iterable<AudioFile> {
 
     public void setSortCriterion(SortCriterion sortCriterion) {
         this.sortCriterion = sortCriterion;
+        this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
+        this.currentAudioFile = this.iterator.next();
     }
 
     public String getSearch() {
@@ -188,14 +209,17 @@ public class PlayList implements Iterable<AudioFile> {
 
     public void setSearch(String search) {
         this.search = search;
+        this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
+        this.currentAudioFile = this.iterator.next();
     }
 
     public Iterator<AudioFile> iterator() {
-        throw new RuntimeException("Not implemented");
+        return new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
     }
 
     public void jumpToAudioFile(AudioFile file) {
-        throw new RuntimeException("Not implemented");
+        this.iterator.jumpToAudioFile(file);
+        this.currentAudioFile = file;
     }
 
 
