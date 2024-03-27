@@ -12,6 +12,9 @@ public class AlbumComparator implements Comparator<AudioFile> {
         if (o1 == null || o2 == null) {
              throw new RuntimeException("Values are null");
         }
+        if (o1.getAlbum().equals(o2.getAlbum())) {
+            return 0;
+        }
         if (o1.getAlbum().isEmpty()) {
             return -1;
         }
