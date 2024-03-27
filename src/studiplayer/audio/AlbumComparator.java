@@ -12,13 +12,13 @@ public class AlbumComparator implements Comparator<AudioFile> {
         if (o1 == null || o2 == null) {
              throw new RuntimeException("Values are null");
         }
-        if (o1.getAlbum().isEmpty() && o2.getAlbum().isEmpty()) {
+        if (o1.getAlbum() == null && o2.getAlbum() == null) {
             return 0;
         }
-        if (o1.getAlbum().isEmpty()) {
+        if (o1.getAlbum() == null) {
             return -1;
         }
-        if (o2.getAlbum().isEmpty()) {
+        if (o2.getAlbum() == null) {
             return 1;
         }
         return o1.getAlbum().compareTo(o2.getAlbum());

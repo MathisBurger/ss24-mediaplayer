@@ -251,9 +251,9 @@ public abstract class AudioFile {
 
     /**
      * Abstract getAlbum to make comparators work
-     * @return Empty string
+     * @return null
      */
     public String getAlbum() {
-        return "";
+        return null;
     }
 }

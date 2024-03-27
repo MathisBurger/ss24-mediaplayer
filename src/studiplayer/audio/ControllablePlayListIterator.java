@@ -95,7 +95,7 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
                 comp = new TitleComparator();
                 break;
             case ALBUM:
-                comp = new AuthorComparator();
+                comp = new AlbumComparator();
                 break;
             case DURATION:
                 comp = new DurationComparator();

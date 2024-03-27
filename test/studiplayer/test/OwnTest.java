@@ -19,9 +19,10 @@ public class OwnTest {
         );
         PlayList pl = new PlayList();
         for (AudioFile af : list) {
+            System.out.println("Album: " + af.getAlbum());
             pl.add(af);
         }
         pl.setSortCriterion(SortCriterion.ALBUM);
-
+        System.out.println(pl.toString());
     }
 }
