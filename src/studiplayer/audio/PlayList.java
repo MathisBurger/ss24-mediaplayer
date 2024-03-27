@@ -15,6 +15,10 @@ import java.util.Scanner;
 public class PlayList implements Iterable<AudioFile> {
 
     private LinkedList<AudioFile> playList;
+
+    private String search;
+
+    private SortCriterion sortCriterion;
     private int current;
 
     /**
@@ -23,6 +27,7 @@ public class PlayList implements Iterable<AudioFile> {
     public PlayList() {
         this.current = 0;
         this.playList = new LinkedList<AudioFile>();
+        this.sortCriterion = SortCriterion.DEFAULT;
     }
 
     /**
@@ -32,6 +37,7 @@ public class PlayList implements Iterable<AudioFile> {
      */
     public PlayList(String m3uPathname) {
         this.current = 0;
+        this.sortCriterion = SortCriterion.DEFAULT;
         this.loadFromM3U(m3uPathname);
     }
 
@@ -169,19 +175,19 @@ public class PlayList implements Iterable<AudioFile> {
     }
 
     public SortCriterion getSortCriterion() {
-        throw new RuntimeException("Not implemented");
+        return this.sortCriterion;
     }
 
     public void setSortCriterion(SortCriterion sortCriterion) {
-        throw new RuntimeException("Not implemented");
+        this.sortCriterion = sortCriterion;
     }
 
     public String getSearch() {
-        throw new RuntimeException("Not implemented");
+        return this.search;
     }
 
     public void setSearch(String search) {
-        throw new RuntimeException("Not implemented");
+        this.search = search;
     }
 
     public Iterator<AudioFile> iterator() {

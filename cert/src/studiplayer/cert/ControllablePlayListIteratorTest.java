@@ -22,9 +22,9 @@ public class ControllablePlayListIteratorTest {
     @Test
     public void testIterator() throws NotPlayableException {
         List<AudioFile> list = Arrays.asList(
-                new TaggedFile("audiofiles/Rock 812.mp3"),
-                new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
-                new TaggedFile("audiofiles/Eisbach Deep Snow.ogg"));
+                new TaggedFile("../audiofiles/Rock 812.mp3"),
+                new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
+                new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg"));
         
         ControllablePlayListIterator iterator = new ControllablePlayListIterator(list);
 
@@ -40,9 +40,9 @@ public class ControllablePlayListIteratorTest {
     @Test
     public void testJumpToAudioFile() throws NotPlayableException {
         List<AudioFile> list = Arrays.asList(
-                new TaggedFile("audiofiles/Rock 812.mp3"),
-                new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
-                new TaggedFile("audiofiles/Eisbach Deep Snow.ogg"));
+                new TaggedFile("../audiofiles/Rock 812.mp3"),
+                new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
+                new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg"));
         
         ControllablePlayListIterator iterator = new ControllablePlayListIterator(list);
 
@@ -65,9 +65,9 @@ public class ControllablePlayListIteratorTest {
     public void testSearch() throws NotPlayableException {
         List<AudioFile> list = new ArrayList<AudioFile>();
 
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
-        AudioFile tf2 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
-        AudioFile tf3 = new TaggedFile("audiofiles/Eisbach Deep Snow.ogg");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+        AudioFile tf2 = new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
+        AudioFile tf3 = new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg");
 
         list.add(tf1);
         list.add(tf2);
@@ -85,9 +85,9 @@ public class ControllablePlayListIteratorTest {
     public void testSortDuration() throws NotPlayableException {
         List<AudioFile> list = new ArrayList<AudioFile>();
 
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
-        AudioFile tf2 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
-        AudioFile tf3 = new TaggedFile("audiofiles/Eisbach Deep Snow.ogg");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+        AudioFile tf2 = new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
+        AudioFile tf3 = new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg");
 
         list.add(tf1);
         list.add(tf2);
@@ -106,9 +106,9 @@ public class ControllablePlayListIteratorTest {
     @Test
     public void testSortAndSearch() throws NotPlayableException {
         List<AudioFile> list = Arrays.asList(
-                new TaggedFile("audiofiles/Rock 812.mp3"),
-                new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
-                new TaggedFile("audiofiles/Eisbach Deep Snow.ogg"));
+                new TaggedFile("../audiofiles/Rock 812.mp3"),
+                new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
+                new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg"));
         
         Iterator<AudioFile> iterator = new ControllablePlayListIterator(list, "Eisbach", SortCriterion.TITLE);
         Assert.assertTrue("Iterator should provide one more result", iterator.hasNext());

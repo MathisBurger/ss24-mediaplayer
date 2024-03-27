@@ -10,8 +10,6 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class SampledFile extends AudioFile {
 
-    protected long duration;
-
     /**
      * Inherited constructor
      */

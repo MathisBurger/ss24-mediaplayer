@@ -5,25 +5,34 @@ import java.util.List;
 
 public class ControllablePlayListIterator implements Iterator<AudioFile> {
 
+    private List<AudioFile> fileList;
+    private int position;
+
     public ControllablePlayListIterator(List<AudioFile> list) {
-        throw new RuntimeException("Not implemented");
+        this.fileList = list;
+        this.position = -1;
     }
 
     public ControllablePlayListIterator(List<AudioFile> list, String search, SortCriterion sort) {
-        throw new RuntimeException("Not implemented");
+        this.fileList = list;
+        this.position = -1;
     }
 
     @Override
     public boolean hasNext() {
-        throw new RuntimeException("Not implemented");
+        return this.fileList.size()-1 > this.position;
     }
 
     @Override
     public AudioFile next() {
-        throw new RuntimeException("Not implemented");
+        return this.fileList.get(++this.position);
     }
 
     public Object jumpToAudioFile(AudioFile file) {
-        throw new RuntimeException("Not implemented");
+        if (this.fileList.contains(file)) {
+            this.position = this.fileList.indexOf(file);
+            return file;
+        }
+        return null;
     }
 }

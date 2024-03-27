@@ -9,11 +9,6 @@ import java.util.Map;
  */
 public class TaggedFile extends SampledFile {
 
-    /**
-     * Album of the song
-     */
-    private String album;
-
     public TaggedFile() {
         super();
         //this.readAndStoreTags();
