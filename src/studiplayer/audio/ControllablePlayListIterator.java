@@ -84,10 +84,18 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
         }
         Comparator<AudioFile> comp = new AuthorComparator();
         switch (sort) {
-            case AUTHOR -> comp = new AuthorComparator();
-            case TITLE -> comp = new TitleComparator();
-            case ALBUM -> comp = new AuthorComparator();
-            case DURATION -> comp = new DurationComparator();
+            case AUTHOR:
+                comp = new AuthorComparator();
+                break;
+            case TITLE:
+                comp = new TitleComparator();
+                break;
+            case ALBUM:
+                comp = new AuthorComparator();
+                break;
+            case DURATION:
+                comp = new DurationComparator();
+                break;
         }
         filtered.sort(comp);
         return filtered;
