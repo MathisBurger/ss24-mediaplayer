@@ -2,6 +2,9 @@ package studiplayer.audio;
 
 import java.util.*;
 
+/**
+ * List iterator for playlists
+ */
 public class ControllablePlayListIterator implements Iterator<AudioFile> {
 
     private List<AudioFile> fileList;
@@ -17,11 +20,21 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
         this.position = -1;
     }
 
+    /**
+     * Checks if there is a next song
+     *
+     * @return Gets status of next song
+     */
     @Override
     public boolean hasNext() {
         return this.fileList.size()-1 > this.position;
     }
 
+    /**
+     * Gets the next song
+     *
+     * @return Next song
+     */
     @Override
     public AudioFile next() {
         try {
@@ -31,6 +44,12 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
         }
     }
 
+    /**
+     * Jumps to a specific audio file
+     *
+     * @param file The file
+     * @return The file
+     */
     public Object jumpToAudioFile(AudioFile file) {
         if (this.fileList.contains(file)) {
             this.position = this.fileList.indexOf(file);
@@ -39,6 +58,14 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
         return null;
     }
 
+    /**
+     * Applies search and sort params to playlist
+     *
+     * @param list The list
+     * @param search The search text
+     * @param sort The sort
+     * @return The searched and sorted list
+     */
     private static List<AudioFile> applySearchAndSort(List<AudioFile> list, String search, SortCriterion sort) {
         List<AudioFile> filtered = new ArrayList<>();
         for (AudioFile element : list) {

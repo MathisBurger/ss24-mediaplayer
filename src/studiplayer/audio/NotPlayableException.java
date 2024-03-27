@@ -1,5 +1,8 @@
 package studiplayer.audio;
 
+/**
+ * Not playable exception
+ */
 public class NotPlayableException extends Exception{
 
     private String pathname;

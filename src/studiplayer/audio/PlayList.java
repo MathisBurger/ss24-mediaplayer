@@ -193,35 +193,70 @@ public class PlayList implements Iterable<AudioFile> {
         return this.playList;
     }
 
+    /**
+     * Gets the sorting criteria
+     *
+     * @return the sort declarations
+     */
     public SortCriterion getSortCriterion() {
         return this.sortCriterion;
     }
 
+    /**
+     * Sets the sorting criteria
+     *
+     * @param sortCriterion The sorting criteria
+     */
     public void setSortCriterion(SortCriterion sortCriterion) {
         this.sortCriterion = sortCriterion;
         this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
         this.currentAudioFile = this.iterator.next();
     }
 
+    /**
+     * Gets the search string
+     *
+     * @return The search string
+     */
     public String getSearch() {
         return this.search;
     }
 
+    /**
+     * Sets the search string
+     *
+     * @param search The search string
+     */
     public void setSearch(String search) {
         this.search = search;
         this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
         this.currentAudioFile = this.iterator.next();
     }
 
+    /**
+     * Gets the playlist iterator
+     *
+     * @return the iterator
+     */
     public Iterator<AudioFile> iterator() {
         return new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
     }
 
+    /**
+     * Jumps to a specific audio file
+     *
+     * @param file The audio file
+     */
     public void jumpToAudioFile(AudioFile file) {
         this.iterator.jumpToAudioFile(file);
         this.currentAudioFile = file;
     }
 
+    /**
+     * Converts playlist to string
+     *
+     * @return The playlist as string
+     */
     public String toString() {
         return this.playList.toString();
     }

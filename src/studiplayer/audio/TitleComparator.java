@@ -2,6 +2,9 @@ package studiplayer.audio;
 
 import java.util.Comparator;
 
+/**
+ * Compares audio files by title
+ */
 public class TitleComparator implements Comparator<AudioFile> {
     @Override
     public int compare(AudioFile o1, AudioFile o2) {
