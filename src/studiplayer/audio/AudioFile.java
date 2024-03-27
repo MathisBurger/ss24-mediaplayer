@@ -1,4 +1,4 @@
-package Player;
+package studiplayer.audio;
 
 import java.io.File;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public abstract class AudioFile {
      *
      * @param path The path to the file
      */
-    public AudioFile(String path) {
+    public AudioFile(String path) throws NotPlayableException {
         this.osSep =  isWindows() ? "\\" : "/";
         this.parsePathname(path);
         //this.setConstructorFilename();
@@ -43,7 +43,7 @@ public abstract class AudioFile {
      *
      * @param path The path to the audio file
      */
-    public void parsePathname(String path) {
+    public void parsePathname(String path) throws NotPlayableException {
         if (!isWindows()) {
             int index = path.indexOf(':');
             StringBuilder sb = new StringBuilder();
@@ -144,7 +144,7 @@ public abstract class AudioFile {
     /**
      * Abstract function to play song
      */
-    public abstract void play();
+    public abstract void play() throws NotPlayableException;
 
     /**
      * Abstract function to toggle pause
@@ -234,10 +234,10 @@ public abstract class AudioFile {
     /**
      * Checks if the file can be read
      */
-    protected void checkCanRead() {
+    protected void checkCanRead() throws NotPlayableException {
         File file = new File(this.pathname);
         if (!file.canRead()) {
-            throw new RuntimeException("Cannot read file");
+            throw new NotPlayableException(this.pathname, "Cannot read file");
         }
     }
 }

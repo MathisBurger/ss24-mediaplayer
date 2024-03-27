@@ -1,14 +1,20 @@
+package studiplayer.cert;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.lang.reflect.Modifier;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import studiplayer.audio.NotPlayableException;
+import studiplayer.audio.SampledFile;
+import studiplayer.audio.TaggedFile;
+import studiplayer.audio.WavFile;
 import studiplayer.basic.BasicPlayer;
-import Player.*;
 
 public class SampledFileTest {
     @SuppressWarnings("rawtypes")
@@ -26,21 +32,21 @@ public class SampledFileTest {
             f1 = new TaggedFile("audiofiles/Rock 812.mp3");
             f2 = new WavFile("audiofiles/wellenmeister - tranquility.wav");
             f3 = new TaggedFile("audiofiles/wellenmeister_awakening.ogg");
-        } catch (Exception e) {
-        	fail("Problem creating AudioFile objects: " + e.getMessage());
+        } catch (NotPlayableException e) {
+        	Assert.fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
         }
     }
 
     @Test
     public void testSuperClass() {
-        assertEquals("SampledFile ist not derived from AudioFile",
-                "AudioFile", clazz.getSuperclass().getName());
+        Assert.assertEquals("SampledFile ist not derived from AudioFile",
+                "studiplayer.audio.AudioFile", clazz.getSuperclass().getName());
     }
 
     @Test
     public void testAbstract() {
         int mod = clazz.getModifiers();
-        assertTrue("SampledFile is not declared abstract",
+        Assert.assertTrue("SampledFile is not declared abstract",
                 Modifier.isAbstract(mod));
     }
 
@@ -50,9 +56,9 @@ public class SampledFileTest {
         try {
             clazz.getDeclaredConstructor(new Class[] { String.class });
         } catch (SecurityException e) {
-            fail(e.toString());
+            Assert.fail(e.toString());
         } catch (NoSuchMethodException e) {
-            fail("Constructor SampledFile(String) does not exist");
+            Assert.fail("Constructor SampledFile(String) does not exist");
         }
     }
 
@@ -84,7 +90,7 @@ public class SampledFileTest {
             // Call method with time value that underflows our format
             SampledFile.timeFormatter(-1L);
             // We should never get here
-            fail("Time value underflows format; expecting exception");
+            Assert.fail("Time value underflows format; expecting exception");
         } catch (RuntimeException e) {
             // Expected
         }
@@ -96,7 +102,7 @@ public class SampledFileTest {
             // Call method with time value that will overflow our format
             SampledFile.timeFormatter(6000000000L);
             // We should never get here
-            fail("Time value overflows format; expecting exception");
+            Assert.fail("Time value overflows format; expecting exception");
         } catch (RuntimeException e) {
             // Expected
         }
@@ -134,7 +140,7 @@ public class SampledFileTest {
             posInitial = BasicPlayer.getPosition();
             counter++;
         }
-        assertEquals("Wrong initial position" + posInitial, 0L, posInitial);
+        Assert.assertEquals("Wrong initial position" + posInitial, 0L, posInitial);
 
         // Now, start our test
         String formattedPositionInitial = f1.formatPosition();
@@ -143,8 +149,8 @@ public class SampledFileTest {
             public void run() {
                 try {
                     f1.play();
-                } catch (RuntimeException e) {
-                    fail("Cannot play " + f1 + " " + e);
+                } catch (NotPlayableException e) {
+                    Assert.fail("Cannot play " + f1 + " " + e);
                 }
             }
         }.start();
@@ -164,7 +170,7 @@ public class SampledFileTest {
         // Get position after pause command
         long posPause1 = BasicPlayer.getPosition();
         // Position in paused state should be after posPlay
-        assertTrue("Position does not change during playback: " + posPlay
+        Assert.assertTrue("Position does not change during playback: " + posPlay
                 + " !< " + posPause1, posPlay < posPause1);
 
         // We assume that playing the song is stopped now
@@ -174,7 +180,7 @@ public class SampledFileTest {
         // If playing the song is really paused this should yield the
         // same position as posPause1
         long posPause2 = BasicPlayer.getPosition();
-        assertEquals("Position in paused state is not stable:" + posPause1
+        Assert.assertEquals("Position in paused state is not stable:" + posPause1
                 + " != " + posPause2, posPause1, posPause2);
 
         // Resume playing and sleep 1 second to let the command get active
@@ -186,7 +192,7 @@ public class SampledFileTest {
         // If the song is played again the position should be larger than any
         // position probed during the paused state
         long posResume1 = BasicPlayer.getPosition();
-        assertTrue("Position does not change after resuming playback: "
+        Assert.assertTrue("Position does not change after resuming playback: "
                 + posPause2 + " !< " + posResume1, posPause2 < posResume1);
 
         // Take a probe short before stopping
@@ -195,7 +201,7 @@ public class SampledFileTest {
         // Check formatted output and compare strings.
         // The comparison of strings of our special format should yield
         // formattedPositionInitial < formattedPositionEnd
-        assertTrue("Method getFormattedPosition does not work properly",
+        Assert.assertTrue("Method getFormattedPosition does not work properly",
                 formattedPositionInitial.compareTo(formattedPositionEnd) < 0);
 
         // Stop playing and sleep 1 second to let the command get active
@@ -210,7 +216,7 @@ public class SampledFileTest {
         // If playing the song was really stopped the two probes taken during
         // state stopped should be equal
         long posStop2 = BasicPlayer.getPosition();
-        assertEquals("Position is not stable in state stop: " + posStop1
+        Assert.assertEquals("Position is not stable in state stop: " + posStop1
                 + " != " + posStop2, posStop1, posStop2);
 
     }

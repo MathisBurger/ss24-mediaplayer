@@ -1,10 +1,15 @@
+package studiplayer.cert;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import Player.*;
+
+import studiplayer.audio.NotPlayableException;
+import studiplayer.audio.WavFile;
 
 public class WavFileTest {
     @SuppressWarnings("rawtypes")
@@ -12,21 +17,21 @@ public class WavFileTest {
     private WavFile f1;
 
     @Before
-    public void setup() {
+    public void setup() { 
     	// Initializer block
     	// This checks the proper connection of constructors already
 
         try {
             f1 = new WavFile("audiofiles/wellenmeister - tranquility.wav");
-        } catch (Exception e) {
-        	fail("Problem creating AudioFile objects: " + e.getMessage());
+        } catch (NotPlayableException e) {
+        	Assert.fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
         }
     }
 
     @Test
     public void testSuperClass() {
-        assertEquals("WavFile ist not derived from SampledFile",
-                "SampledFile", clazz.getSuperclass()
+        Assert.assertEquals("WavFile ist not derived from SampledFile",
+                "studiplayer.audio.SampledFile", clazz.getSuperclass()
                         .getName());
     }
 
@@ -36,9 +41,9 @@ public class WavFileTest {
         try {
             clazz.getDeclaredConstructor(new Class[] { String.class });
         } catch (SecurityException e) {
-            fail(e.toString());
+            Assert.fail(e.toString());
         } catch (NoSuchMethodException e) {
-            fail("Constructor WavFile(String) does not exist");
+            Assert.fail("Constructor WavFile(String) does not exist");
         }
     }
 
@@ -70,7 +75,7 @@ public class WavFileTest {
     // They should have been moved to some super class
     @Test
     public void testNrAttributes() {
-        assertTrue(
+        Assert.assertTrue(
                 "Do not define any local variables of methods as attributes?",
                 clazz.getDeclaredFields().length == 0);
     }
@@ -79,9 +84,14 @@ public class WavFileTest {
     public void testInvalid() {
         try {
             new WavFile("audiofiles/wellenmeister - tranquility.cut.wav");
-            fail("RuntimeException expected for erroneous WAV file wellenmeister - tranquility.cut.wav");
-        } catch (RuntimeException e) {
+            Assert.fail("NotPlayableException expected for erroneous WAV file wellenmeister - tranquility.cut.wav");
+        } catch (NotPlayableException e) {
             // Expected
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            // RuntimeException of studiplayer.basic.WavParamReader.readParams
+            // was not mapped to NotPlayableException
+            Assert.fail("NotPlayableException expected for erroneous WAV file wellenmeister - tranquility.cut.wav");
         }
     }
 

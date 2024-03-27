@@ -1,4 +1,4 @@
-package Player;
+package studiplayer.audio;
 
 /**
  * Handles AudioFile factory activities.
@@ -11,7 +11,7 @@ public class AudioFileFactory {
      * @param path The given path
      * @return An AudioFile instance.
      */
-    public static AudioFile createAudioFile(String path) {
+    public static AudioFile createAudioFile(String path) throws NotPlayableException {
         System.out.println("File: " + path);
         String[] split = path.split("\\.");
         String extension = split[split.length-1];
@@ -21,6 +21,6 @@ public class AudioFileFactory {
         if (extension.equalsIgnoreCase("ogg") || extension.equalsIgnoreCase("mp3")) {
             return new TaggedFile(path);
         }
-        throw new RuntimeException("Unknown suffix for AudioFile \"" + path + "\"");
+        throw new NotPlayableException(path, "Unknown suffix for AudioFile \"" + path + "\"");
     }
 }

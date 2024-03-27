@@ -1,9 +1,10 @@
-package Player;
+package studiplayer.audio;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 /**
  * Playlist object that contains playlist data
  */
-public class PlayList {
+public class PlayList implements Iterable<AudioFile> {
 
     private LinkedList<AudioFile> playList;
     private int current;
@@ -116,7 +117,12 @@ public class PlayList {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (!line.startsWith("#") && !line.isBlank()) {
-                    this.playList.add(AudioFileFactory.createAudioFile(line));
+                    try {
+                        AudioFile af = AudioFileFactory.createAudioFile(line);
+                        this.playList.add(af);
+                    } catch (NotPlayableException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -161,4 +167,30 @@ public class PlayList {
     public List<AudioFile> getList() {
         return this.playList;
     }
+
+    public SortCriterion getSortCriterion() {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public void setSortCriterion(SortCriterion sortCriterion) {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public String getSearch() {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public void setSearch(String search) {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public Iterator<AudioFile> iterator() {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public void jumpToAudioFile(AudioFile file) {
+        throw new RuntimeException("Not implemented");
+    }
+
+
 }

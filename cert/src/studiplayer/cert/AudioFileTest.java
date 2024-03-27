@@ -1,3 +1,6 @@
+package studiplayer.cert;
+
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -6,9 +9,14 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Hashtable;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import Player.*;
+
+import studiplayer.audio.AudioFile;
+import studiplayer.audio.NotPlayableException;
+import studiplayer.audio.TaggedFile;
+import studiplayer.audio.WavFile;
 
 public class AudioFileTest {
 
@@ -28,8 +36,8 @@ public class AudioFileTest {
             f1 = new WavFile("audiofiles/wellenmeister - tranquility.wav");
             f2 = new TaggedFile("audiofiles/Rock 812.mp3");
             f3 = new TaggedFile("audiofiles/wellenmeister_awakening.ogg");
-        } catch (Exception e) {
-        	fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
+        } catch (NotPlayableException e) {
+        	Assert.fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
         }
     }
 
@@ -87,14 +95,14 @@ public class AudioFileTest {
         // exception
         try {
             new WavFile("does not exist.wav");
-            fail("Expecting exception due to a non-existing file");
-        } catch (RuntimeException e) {
+            Assert.fail("Expecting exception due to a non-existing file");
+        } catch (NotPlayableException e) {
             // Expected
         }
         try {
             new TaggedFile("does not exist.mp3");
-            fail("Expecting exception due to a non-existing file");
-        } catch (RuntimeException e) {
+            Assert.fail("Expecting exception due to a non-existing file");
+        } catch (NotPlayableException e) {
          // Expected
         }
     }
@@ -102,7 +110,7 @@ public class AudioFileTest {
     @Test
     public void testAbstract() {
         int mod = clazz.getModifiers();
-        assertTrue("Class AudioFile is not declared abstract",
+        Assert.assertTrue("Class AudioFile is not declared abstract",
                 Modifier.isAbstract(mod));
     }
 
@@ -120,16 +128,16 @@ public class AudioFileTest {
             for (String methName : hm.keySet()) {
                 goneWrong = methName;
                 Method meth = clazz.getDeclaredMethod(methName, (Class[]) null);
-                assertEquals("Wrong return type for " + methName, meth
+                Assert.assertEquals("Wrong return type for " + methName, meth
                         .getReturnType().getName(), hm.get(methName));
                 int mod = meth.getModifiers();
-                assertTrue("AudioFile." + methName
+                Assert.assertTrue("AudioFile." + methName
                         + " is not declared abstract", Modifier.isAbstract(mod));
             }
         } catch (SecurityException e) {
-            fail(e.toString());
+            Assert.fail(e.toString());
         } catch (NoSuchMethodException e) {
-            fail("Method " + goneWrong + " does not exist");
+            Assert.fail("Method " + goneWrong + " does not exist");
         }
     }
 
@@ -140,10 +148,10 @@ public class AudioFileTest {
         // We expect that title is derived from filename!
         try {
             f = new TaggedFile("audiofiles/kein.wav.sondern.ogg");
+        } catch (NotPlayableException e) {
+            Assert.fail("File does not exist " + e);
         } catch (NullPointerException e) {
-            fail("NullPointerException for TaggedFile with null tags");
-        } catch (RuntimeException e) {
-            fail("File does not exist " + e);
+            Assert.fail("NullPointerException for TaggedFile with null tags");
         }
         assertEquals("Wrong author", "", f.getAuthor());
         assertEquals("Wrong title", "kein.wav.sondern", f.getTitle());

@@ -1,4 +1,4 @@
-package Player;
+package studiplayer.audio;
 
 import studiplayer.basic.WavParamReader;
 
@@ -9,10 +9,10 @@ public class WavFile extends SampledFile {
 
     public WavFile() {
         super();
-        this.readAndSetDurationFromFile();
+        //this.readAndSetDurationFromFile();
     }
 
-    public WavFile(String path) {
+    public WavFile(String path) throws NotPlayableException {
         super(path);
         this.readAndSetDurationFromFile();
     }
@@ -20,11 +20,15 @@ public class WavFile extends SampledFile {
     /**
      * Reads the duration from the wav file and sets it
      */
-    public void readAndSetDurationFromFile() {
-        WavParamReader.readParams(this.pathname);
-        float frameRate = WavParamReader.getFrameRate();
-        long numberOfFrames = WavParamReader.getNumberOfFrames();
-        this.duration = WavFile.computeDuration(numberOfFrames, frameRate);
+    public void readAndSetDurationFromFile() throws NotPlayableException {
+        try {
+            WavParamReader.readParams(this.pathname);
+            float frameRate = WavParamReader.getFrameRate();
+            long numberOfFrames = WavParamReader.getNumberOfFrames();
+            this.duration = WavFile.computeDuration(numberOfFrames, frameRate);
+        } catch (RuntimeException e) {
+            throw new NotPlayableException(this.pathname, e);
+        }
     }
 
     /**

@@ -1,19 +1,21 @@
+package studiplayer.cert;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import Player.*;
+
+import studiplayer.audio.NotPlayableException;
+import studiplayer.audio.TaggedFile;
 
 public class TaggedFileTest {
     @SuppressWarnings("rawtypes")
     private Class clazz = TaggedFile.class;
     private TaggedFile f1;
     private TaggedFile f2;
-    private TaggedFile f3;
-    private TaggedFile f4;
-    private TaggedFile f5;
 
     @Before
     public void setup() { 
@@ -23,18 +25,15 @@ public class TaggedFileTest {
         try {
             f1 = new TaggedFile("audiofiles/Rock 812.mp3");
             f2 = new TaggedFile("audiofiles/wellenmeister_awakening.ogg");
-            f3 = new TaggedFile("audiofiles/Haydn - Symphonie # 96 Motiv.ogg");
-            f4 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
-            f5 = new TaggedFile("audiofiles/Mozart - Piano Concerto No25 Motiv.ogg");
-        } catch (Exception e) {
-        	fail("Problem creating AudioFile objects: " + e.getMessage());
+        } catch (NotPlayableException e) {
+        	Assert.fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
         }
     }
 
     @Test
     public void testSuperClass() {
-        assertEquals("TaggedFile ist not derived from SampledFile",
-                "SampledFile", clazz.getSuperclass()
+        Assert.assertEquals("TaggedFile ist not derived from SampledFile",
+                "studiplayer.audio.SampledFile", clazz.getSuperclass()
                         .getName());
     }
 
@@ -44,9 +43,9 @@ public class TaggedFileTest {
         try {
             clazz.getDeclaredConstructor(new Class[] { String.class });
         } catch (SecurityException e) {
-            fail(e.toString());
+            Assert.fail(e.toString());
         } catch (NoSuchMethodException e) {
-            fail("Constructor TaggedFile(String) does not exist");
+            Assert.fail("Constructor TaggedFile(String) does not exist");
         }
     }
 
@@ -59,18 +58,6 @@ public class TaggedFileTest {
                 "toString not correct",
                 "Wellenmeister - TANOM Part I: Awakening - TheAbsoluteNecessityOfMeaning - 05:55",
                 f2.toString());
-        assertEquals(
-                "toString not correct",
-                "Haydn - Symphonie # 96 Motiv - Musikschnipsel - 00:03",
-                f3.toString());
-        assertEquals(
-                "toString not correct",
-                "Motiv 5. Symphonie von Beethoven - Musikschnipsel - 00:06",
-                f4.toString());
-        assertEquals(
-                "toString not correct",
-                "Mozart - Piano Concerto No25 Motiv - Musikschnipsel - 00:15",
-                f5.toString());
     }
 
     @Test
@@ -91,7 +78,7 @@ public class TaggedFileTest {
     // The others should have been moved to some super class
     @Test
     public void testNrAttributes() {
-        assertTrue(
+        Assert.assertTrue(
                 "Do not define any local variables of methods as attributes?",
                 clazz.getDeclaredFields().length == 1);
     }
@@ -100,9 +87,15 @@ public class TaggedFileTest {
     public void testInvalid() {
         try {
             new TaggedFile("audiofiles/Rock 812.cut.mp3");
-            fail("NotPlayableException expected for erroneous MP3 file Rock 812.cut.mp3");
-        } catch (RuntimeException e) {
+            Assert.fail("NotPlayableException expected for erroneous MP3 file Rock 812.cut.mp3");
+        } catch (NotPlayableException e) {
             // Expected
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            // RuntimeException of studiplayer.basic.TagReader.readTags
+            // was not mapped to NotPlayableException
+            Assert.fail("NotPlayableException expected for erroneous MP3 file Rock 812.cut.mp3");
         }
     }
+
 }

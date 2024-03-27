@@ -1,4 +1,4 @@
-package Player;
+package studiplayer.audio;
 
 import studiplayer.basic.BasicPlayer;
 
@@ -24,7 +24,7 @@ public abstract class SampledFile extends AudioFile {
      *
      * @param path The path to a file
      */
-    public SampledFile(String path) {
+    public SampledFile(String path) throws NotPlayableException {
         super(path);
     }
 
@@ -32,8 +32,12 @@ public abstract class SampledFile extends AudioFile {
      * Plays the song
      */
     @Override
-    public void play() {
-        BasicPlayer.play(this.pathname);
+    public void play() throws NotPlayableException {
+        try {
+            BasicPlayer.play(this.pathname);
+        } catch (RuntimeException e) {
+            throw new NotPlayableException(this.pathname, e);
+        }
     }
 
     /**
