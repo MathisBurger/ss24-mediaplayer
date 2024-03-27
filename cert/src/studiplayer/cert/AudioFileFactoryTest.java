@@ -18,27 +18,27 @@ public class AudioFileFactoryTest {
     public void testFactory() {
         try {
             AudioFile f1 = AudioFileFactory
-                    .createAudioFile("audiofiles/Rock 812.mp3");
+                    .createAudioFile("../audiofiles/Rock 812.mp3");
             assertEquals("MP3 type not recognized",
                     "studiplayer.audio.TaggedFile", f1.getClass().getName());
             AudioFile f2 = AudioFileFactory
-                    .createAudioFile("audiofiles/wellenmeister - tranquility.wav");
+                    .createAudioFile("../audiofiles/wellenmeister - tranquility.wav");
             assertEquals("WAV type not recognized",
                     "studiplayer.audio.WavFile", f2.getClass().getName());
             AudioFile f3 = AudioFileFactory
-                    .createAudioFile("audiofiles/wellenmeister_awakening.ogg");
+                    .createAudioFile("../audiofiles/wellenmeister_awakening.ogg");
             assertEquals("OGG type not recognized",
                     "studiplayer.audio.TaggedFile", f3.getClass().getName());
             AudioFile f4 = AudioFileFactory
-                    .createAudioFile("audiofiles/special.oGg");
+                    .createAudioFile("../audiofiles/special.oGg");
             assertEquals("OGG type not recognized",
                     "studiplayer.audio.TaggedFile", f4.getClass().getName());
             AudioFile f5 = AudioFileFactory
-                    .createAudioFile("audiofiles/kein.wav.sondern.ogg");
+                    .createAudioFile("../audiofiles/kein.wav.sondern.ogg");
             Assert.assertTrue("Check for filename suffix not correct",
                     f5 instanceof TaggedFile);
             AudioFile f6 = AudioFileFactory
-                    .createAudioFile("audiofiles/kein.ogg.sondern.wav");
+                    .createAudioFile("../audiofiles/kein.ogg.sondern.wav");
             Assert.assertTrue("Check for filename suffix not correct",
                     f6 instanceof WavFile);
 

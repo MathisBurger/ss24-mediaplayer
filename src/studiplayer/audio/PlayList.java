@@ -222,5 +222,7 @@ public class PlayList implements Iterable<AudioFile> {
         this.currentAudioFile = file;
     }
 
-
+    public String toString() {
+        return this.playList.toString();
+    }
 }

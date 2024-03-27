@@ -29,9 +29,9 @@ public class SampledFileTest {
     	// This checks the proper connection of constructors already
 
         try {
-            f1 = new TaggedFile("audiofiles/Rock 812.mp3");
-            f2 = new WavFile("audiofiles/wellenmeister - tranquility.wav");
-            f3 = new TaggedFile("audiofiles/wellenmeister_awakening.ogg");
+            f1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+            f2 = new WavFile("../audiofiles/wellenmeister - tranquility.wav");
+            f3 = new TaggedFile("../audiofiles/wellenmeister_awakening.ogg");
         } catch (NotPlayableException e) {
         	Assert.fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
         }

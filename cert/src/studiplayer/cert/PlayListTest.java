@@ -54,9 +54,9 @@ public class PlayListTest {
         
         try {
             files = Arrays.asList(
-                    new TaggedFile("audiofiles/Rock 812.mp3"),
-                    new WavFile("audiofiles/wellenmeister - tranquility.wav"),
-                    new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+                    new TaggedFile("../audiofiles/Rock 812.mp3"),
+                    new WavFile("../audiofiles/wellenmeister - tranquility.wav"),
+                    new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
             for(AudioFile file : files) {
                 pl.add(file);
             }
@@ -89,7 +89,7 @@ public class PlayListTest {
         Assert.assertNull("currentAudioFile() should yield null at beginning", pl.currentAudioFile());
         
         try {
-            file = new TaggedFile("audiofiles/Rock 812.mp3");
+            file = new TaggedFile("../audiofiles/Rock 812.mp3");
             pl.add(file);
         } catch (NotPlayableException e) {
             Assert.fail("Unable to create AudioFile:" + e.getMessage());
@@ -139,9 +139,9 @@ public class PlayListTest {
         Assert.assertNull("currentAudioFile() should yield null at beginning", pl.currentAudioFile());
         try {
             files = Arrays.asList(
-                    new TaggedFile("audiofiles/Rock 812.mp3"),
-                    new WavFile("audiofiles/wellenmeister - tranquility.wav"),
-                    new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+                    new TaggedFile("../audiofiles/Rock 812.mp3"),
+                    new WavFile("../audiofiles/wellenmeister - tranquility.wav"),
+                    new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
             for(AudioFile file : files) {
                 pl.add(file);
             }
@@ -163,9 +163,9 @@ public class PlayListTest {
         // Create a play list
         PlayList pl1 = new PlayList();
         try {
-            pl1.add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
         } catch (NotPlayableException e) {
             Assert.fail("Unable to create AudioFile:" + e.getMessage());
         }
@@ -254,7 +254,7 @@ public class PlayListTest {
             fw.write("gibt es nicht.wav\n");
             fw.write("und das auch nicht.ogg\n");
             fw.write("und das - sowieso nicht.mp3\n");
-            fw.write("audiofiles/Rock 812.mp3");
+            fw.write("../audiofiles/Rock 812.mp3");
             fw.close();
         } catch (IOException e) {
             Assert.fail(e.toString());
@@ -304,10 +304,10 @@ public class PlayListTest {
         // create a PlayList
         PlayList pl1 = new PlayList();
         try {
-            pl1.add(new TaggedFile("audiofiles/kein.wav.sondern.ogg"));
-            pl1.add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/kein.wav.sondern.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
         } catch (NotPlayableException e) {
             Assert.fail("Cannot create AudioFile:" + e.getMessage());
         }
@@ -331,10 +331,10 @@ public class PlayListTest {
         // create a PlayList
         PlayList pl1 = new PlayList();
         try {
-            pl1.add(new TaggedFile("audiofiles/kein.wav.sondern.ogg"));
-            pl1.add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/kein.wav.sondern.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
         } catch (NotPlayableException e) {
             Assert.fail("Cannot create AudioFile:" + e.getMessage());
         }
@@ -358,10 +358,10 @@ public class PlayListTest {
         // create a PlayList
         PlayList pl1 = new PlayList();
         try {
-            pl1.add(new TaggedFile("audiofiles/kein.wav.sondern.ogg"));
-            pl1.add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/kein.wav.sondern.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
         } catch (NotPlayableException e) {
             Assert.fail("Cannot create AudioFile:" + e.getMessage());
         }
@@ -385,10 +385,10 @@ public class PlayListTest {
         // create a PlayList
         PlayList pl1 = new PlayList();
         try {
-            pl1.add(new TaggedFile("audiofiles/kein.wav.sondern.ogg"));
-            pl1.add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/kein.wav.sondern.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
         } catch (NotPlayableException e) {
             Assert.fail("Cannot create AudioFile:" + e.getMessage());
         }
@@ -410,10 +410,10 @@ public class PlayListTest {
         // create a PlayList
         PlayList pl1 = new PlayList();
         try {
-            pl1.add(new TaggedFile("audiofiles/kein.wav.sondern.ogg"));
-            pl1.add(new TaggedFile("audiofiles/Rock 812.mp3"));
-            pl1.add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
-            pl1.add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/kein.wav.sondern.ogg"));
+            pl1.add(new TaggedFile("../audiofiles/Rock 812.mp3"));
+            pl1.add(new WavFile("../audiofiles/wellenmeister - tranquility.wav"));
+            pl1.add(new TaggedFile("../audiofiles/wellenmeister_awakening.ogg"));
         } catch (NotPlayableException e) {
             Assert.fail("Cannot create AudioFile:" + e.getMessage());
         }
@@ -436,9 +436,9 @@ public class PlayListTest {
         List<AudioFile> check;
         try {
             check = Arrays.asList(
-                    new TaggedFile("audiofiles/Rock 812.mp3"),
-                    new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
-                    new TaggedFile("audiofiles/Eisbach Deep Snow.ogg"));
+                    new TaggedFile("../audiofiles/Rock 812.mp3"),
+                    new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg"),
+                    new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg"));
         } catch (NotPlayableException e) {
             Assert.fail("Cannot create AudioFile:" + e.getMessage());
             return;
@@ -474,9 +474,9 @@ public class PlayListTest {
     @Test
     public void testJumpTo() throws Exception {
         System.out.println("---- Test JumpTo ----");
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
-        AudioFile tf2 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
-        AudioFile tf3 = new TaggedFile("audiofiles/Eisbach Deep Snow.ogg");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+        AudioFile tf2 = new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
+        AudioFile tf3 = new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg");
 
         PlayList list = new PlayList();
         list.add(tf1);
@@ -502,7 +502,7 @@ public class PlayListTest {
     @Test
     public void testNextSongWithOneAudioFile() throws Exception {
         System.out.println("---- Test Snippet 01 ----");
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
 
         PlayList pl1 = new PlayList();
         pl1.add(tf1);
@@ -520,8 +520,8 @@ public class PlayListTest {
     @Test
     public void testNextSongWithTwoAudioFiles() throws Exception {
         System.out.println("---- Test Snippet 02 ----");
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
-        AudioFile tf2 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+        AudioFile tf2 = new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
 
         PlayList pl2 = new PlayList();
         pl2.add(tf1);
@@ -537,8 +537,8 @@ public class PlayListTest {
     @Test
     public void testNextSongLoopingCorrectly() throws Exception {
         System.out.println("---- Test Snippet 03 ----");
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
-        AudioFile tf2 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+        AudioFile tf2 = new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
 
         PlayList pl3 = new PlayList();
         pl3.add(tf1);
@@ -559,9 +559,9 @@ public class PlayListTest {
     @Test
     public void testNextSongWithSort() throws Exception {
         System.out.println("---- Test Snippet 04 ----");
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
-        AudioFile tf2 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
-        AudioFile tf3 = new TaggedFile("audiofiles/Eisbach Deep Snow.ogg");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+        AudioFile tf2 = new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
+        AudioFile tf3 = new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg");
 
         PlayList pl4 = new PlayList();
         pl4.add(tf1);
@@ -584,9 +584,9 @@ public class PlayListTest {
     @Test
     public void testNextSongWithSearch() throws Exception {
         System.out.println("---- Test Snippet 05 ----");
-        AudioFile tf1 = new TaggedFile("audiofiles/Rock 812.mp3");
-        AudioFile tf2 = new TaggedFile("audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
-        AudioFile tf3 = new TaggedFile("audiofiles/Eisbach Deep Snow.ogg");
+        AudioFile tf1 = new TaggedFile("../audiofiles/Rock 812.mp3");
+        AudioFile tf2 = new TaggedFile("../audiofiles/Motiv 5. Symphonie von Beethoven.ogg");
+        AudioFile tf3 = new TaggedFile("../audiofiles/Eisbach Deep Snow.ogg");
 
         PlayList pl5 = new PlayList();
         pl5.add(tf1);

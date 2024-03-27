@@ -18,4 +18,9 @@ public class NotPlayableException extends Exception{
         super(msg, t);
         this.pathname = pathname;
     }
+
+    @Override
+    public String toString() {
+        return "Pathname: " + this.pathname + " " + super.toString();
+    }
 }

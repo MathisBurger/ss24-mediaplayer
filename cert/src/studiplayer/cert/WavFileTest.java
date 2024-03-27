@@ -22,7 +22,7 @@ public class WavFileTest {
     	// This checks the proper connection of constructors already
 
         try {
-            f1 = new WavFile("audiofiles/wellenmeister - tranquility.wav");
+            f1 = new WavFile("../audiofiles/wellenmeister - tranquility.wav");
         } catch (NotPlayableException e) {
         	Assert.fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
         }
@@ -83,7 +83,7 @@ public class WavFileTest {
     @Test
     public void testInvalid() {
         try {
-            new WavFile("audiofiles/wellenmeister - tranquility.cut.wav");
+            new WavFile("../audiofiles/wellenmeister - tranquility.cut.wav");
             Assert.fail("NotPlayableException expected for erroneous WAV file wellenmeister - tranquility.cut.wav");
         } catch (NotPlayableException e) {
             // Expected

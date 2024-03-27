@@ -52,11 +52,11 @@ public class ComparatorTest {
         // Wir bauen uns mehrere AudioFile Objekte. Darunter auch Objekte der
         // hier eigens abgeleiteten Klasse MidiFile.
         try {
-            mp3 = AudioFileFactory.createAudioFile("audiofiles/Rock 812.mp3");
+            mp3 = AudioFileFactory.createAudioFile("../audiofiles/Rock 812.mp3");
             wav = AudioFileFactory
-                    .createAudioFile("audiofiles/wellenmeister - tranquility.wav");
-            midi1 = new MidiFile("audiofiles/kein.wav.sondern.ogg");
-            midi2 = new MidiFile("audiofiles/Rock 812.mp3");
+                    .createAudioFile("../audiofiles/wellenmeister - tranquility.wav");
+            midi1 = new MidiFile("../audiofiles/kein.wav.sondern.ogg");
+            midi2 = new MidiFile("../audiofiles/Rock 812.mp3");
         } catch (NotPlayableException e) {
             Assert.fail(e.getMessage());
         }

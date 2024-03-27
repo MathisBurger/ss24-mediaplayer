@@ -15,11 +15,6 @@ public abstract class AudioFile {
     protected String author;
     protected String title;
 
-    /**
-     * Album of the song
-     */
-    protected String album;
-
     protected long duration;
 
     private final String osSep;
@@ -30,7 +25,6 @@ public abstract class AudioFile {
     public AudioFile()  {
         this.osSep =  isWindows() ? "\\" : "/";
         this.author = "";
-        this.album = "";
         this.title = "";
         this.duration = -1;
     }
@@ -44,7 +38,6 @@ public abstract class AudioFile {
         this.osSep =  isWindows() ? "\\" : "/";
         this.duration = -1;
         this.author = "";
-        this.album = "";
         this.title = "";
         this.parsePathname(path);
         //this.setConstructorFilename();
@@ -254,5 +247,9 @@ public abstract class AudioFile {
         if (!file.canRead()) {
             throw new NotPlayableException(this.pathname, "Cannot read file");
         }
+    }
+
+    public String getAlbum() {
+        return "";
     }
 }

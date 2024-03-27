@@ -47,7 +47,7 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
                     || search.isEmpty()
                     || element.getAuthor().contains(search)
                     || element.getTitle().contains(search)
-                    || element.album.contains(search)
+                    || (element instanceof TaggedFile && ((TaggedFile) element).album.contains(search))
             ) {
                 filtered.add(element);
             }

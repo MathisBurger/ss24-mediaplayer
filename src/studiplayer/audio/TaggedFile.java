@@ -9,13 +9,20 @@ import java.util.Map;
  */
 public class TaggedFile extends SampledFile {
 
+    /**
+     * Album of the song
+     */
+    protected String album;
+
     public TaggedFile() {
         super();
+        this.album = "";
         //this.readAndStoreTags();
     }
 
     public TaggedFile(String path) throws NotPlayableException {
         super(path);
+        this.album = "";
         this.readAndStoreTags();
     }
 
@@ -24,6 +31,7 @@ public class TaggedFile extends SampledFile {
      *
      * @return The album
      */
+    @Override
     public String getAlbum() {
         return this.album;
     }
@@ -58,7 +66,7 @@ public class TaggedFile extends SampledFile {
      */
     @Override
     public String toString() {
-        if (this.album != null) {
+        if (this.album != null && !this.album.isEmpty()) {
             return super.toString() +  " - " + this.album + " - " + this.formatDuration();
         }
         return super.toString() +  " - " + this.formatDuration();

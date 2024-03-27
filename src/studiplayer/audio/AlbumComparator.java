@@ -1,5 +1,6 @@
 package studiplayer.audio;
 
+import java.lang.reflect.Field;
 import java.util.Comparator;
 
 public class AlbumComparator implements Comparator<AudioFile> {
@@ -8,12 +9,12 @@ public class AlbumComparator implements Comparator<AudioFile> {
         if (o1 == null || o2 == null) {
              throw new RuntimeException("Values are null");
         }
-        if (o1.album == null || o1.album.isEmpty()) {
+        if (o1.getAlbum().isEmpty()) {
             return -1;
         }
-        if (o2.album == null || o2.album.isEmpty()) {
+        if (o2.getAlbum().isEmpty()) {
             return 1;
         }
-        return o1.album.compareTo(o2.album);
+        return o1.getAlbum().compareTo(o2.getAlbum());
     }
 }

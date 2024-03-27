@@ -33,9 +33,9 @@ public class AudioFileTest {
     	// This checks the proper connection of constructors already
 
         try {
-            f1 = new WavFile("audiofiles/wellenmeister - tranquility.wav");
-            f2 = new TaggedFile("audiofiles/Rock 812.mp3");
-            f3 = new TaggedFile("audiofiles/wellenmeister_awakening.ogg");
+            f1 = new WavFile("../audiofiles/wellenmeister - tranquility.wav");
+            f2 = new TaggedFile("../audiofiles/Rock 812.mp3");
+            f3 = new TaggedFile("../audiofiles/wellenmeister_awakening.ogg");
         } catch (NotPlayableException e) {
         	Assert.fail("Problem beim Erzeugen der AudioFile-Objekte: " + e.getMessage());
         }
@@ -43,11 +43,11 @@ public class AudioFileTest {
 
     @Test
     public void testGetPathname() {
-        assertEquals("Pathname not correct", "audiofiles" + sepchar
+        assertEquals("Pathname not correct", "../audiofiles" + sepchar
                 + "wellenmeister - tranquility.wav", f1.getPathname());
-        assertEquals("Pathname not correct", "audiofiles" + sepchar
+        assertEquals("Pathname not correct", "../audiofiles" + sepchar
                 + "Rock 812.mp3", f2.getPathname());
-        assertEquals("Pathname not correct", "audiofiles" + sepchar
+        assertEquals("Pathname not correct", "../audiofiles" + sepchar
                 + "wellenmeister_awakening.ogg", f3.getPathname());
     }
 
@@ -144,10 +144,10 @@ public class AudioFileTest {
     @Test
     public void testNullTags() {
         AudioFile f = null;
-        // The file "audiofiles/kein.wav.sondern.ogg" does not contain tags for author and title
+        // The file "../audiofiles/kein.wav.sondern.ogg" does not contain tags for author and title
         // We expect that title is derived from filename!
         try {
-            f = new TaggedFile("audiofiles/kein.wav.sondern.ogg");
+            f = new TaggedFile("../audiofiles/kein.wav.sondern.ogg");
         } catch (NotPlayableException e) {
             Assert.fail("File does not exist " + e);
         } catch (NullPointerException e) {
