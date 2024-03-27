@@ -258,6 +258,6 @@ public class PlayList implements Iterable<AudioFile> {
      * @return The playlist as string
      */
     public String toString() {
-        return this.playList.toString();
+        return this.iterator.getFileList().toString();
     }
 }

@@ -58,6 +58,10 @@ public class ControllablePlayListIterator implements Iterator<AudioFile> {
         return null;
     }
 
+    public List<AudioFile> getFileList() {
+        return this.fileList;
+    }
+
     /**
      * Applies search and sort params to playlist
      *
