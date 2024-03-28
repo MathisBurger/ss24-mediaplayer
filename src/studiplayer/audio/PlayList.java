@@ -208,6 +208,9 @@ public class PlayList implements Iterable<AudioFile> {
      * @param sortCriterion The sorting criteria
      */
     public void setSortCriterion(SortCriterion sortCriterion) {
+        if (sortCriterion == null) {
+            return;
+        }
         this.sortCriterion = sortCriterion;
         this.iterator = new ControllablePlayListIterator(this.playList, this.search, this.sortCriterion);
         this.currentAudioFile = this.iterator.next();
