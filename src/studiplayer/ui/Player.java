@@ -26,8 +26,7 @@ import java.util.Objects;
  */
 public class Player extends Application {
 
-    // TODO: Change before APA
-    public static final String DEFAULT_PLAYLIST = "../playlists/DefaultPlayList.m3u";
+    public static final String DEFAULT_PLAYLIST = "playlists/DefaultPlayList.m3u";
     private static final String PLAYLIST_DIRECTORY = "";
     private static final String INITIAL_PLAY_TIME_LABEL = "00:00";
     private static final String NO_CURRENT_SONG = "-";
